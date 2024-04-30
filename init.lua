@@ -841,13 +841,6 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    autotag = {
-      enable = true,
-      enable_rename = true,
-      enable_close = true,
-      enable_close_on_slash = true,
-      filetypes = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
-    },
     opts = {
       ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'typescript', 'javascript' },
       -- Autoinstall languages that are not installed
