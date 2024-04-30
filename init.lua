@@ -166,7 +166,7 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-vim.keymap.set('n', '<C-q>', ':Neotree toggle<CR>', {})
+vim.keymap.set('n', '<C-`>', ':Neotree toggle<CR>', {})
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
@@ -567,6 +567,7 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         gopls = {},
+        html = {},
         -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -784,22 +785,17 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
-
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
-    end,
+  {
+    {
+      'sainnhe/sonokai',
+      priority = 1000,
+      config = function()
+        vim.g.sonokai_transparent_background = '1'
+        vim.g.sonokai_enable_italic = '1'
+        vim.g.sonokai_style = 'andromeda'
+        vim.cmd.colorscheme 'sonokai'
+      end,
+    },
   },
 
   -- Highlight todo, notes, etc in comments
@@ -845,6 +841,13 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    autotag = {
+      enable = true,
+      enable_rename = true,
+      enable_close = true,
+      enable_close_on_slash = true,
+      filetypes = { 'html', 'xml', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+    },
     opts = {
       ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'typescript', 'javascript' },
       -- Autoinstall languages that are not installed
