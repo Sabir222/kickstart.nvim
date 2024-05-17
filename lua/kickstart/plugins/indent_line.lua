@@ -5,5 +5,6 @@ return {
     -- See `:help ibl`
     main = 'ibl',
     opts = {},
+    version = '3.5.4',
   },
 }
