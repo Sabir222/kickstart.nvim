@@ -605,6 +605,10 @@ require('lazy').setup({
     event = 'InsertEnter',
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
+      -- {
+      --   'zbirenbaum/copilot-cmp',
+      --   opts = {},
+      -- },
       {
         'L3MON4D3/LuaSnip',
         build = (function()
@@ -706,6 +710,7 @@ require('lazy').setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          --  { name = 'copilot' },
         },
       }
     end,
