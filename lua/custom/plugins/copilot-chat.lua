@@ -14,6 +14,7 @@ return {
       separator = '---', -- Separator to use in chat
       model = 'gpt-4', -- GPT model to use, 'gpt-3.5-turbo' or 'gpt-4'
       temperature = 0.1, -- GPT temperature
+      show_help = false,
     },
     -- See Commands section for default commands if you want to lazy load on them
   },
